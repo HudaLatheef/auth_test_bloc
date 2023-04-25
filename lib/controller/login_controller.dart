@@ -12,35 +12,35 @@ import 'package:http/http.dart' as http;
 class LoginController extends GetxController {
   var isLoading = false.obs;
 
-  Future<void> login(BuildContext context, username, password) async {
-    isLoading(true);
+  Future<String> login( username, password) async {
+
 
     Map<String, dynamic> params = {
       'password': password,
       'email': username,
     };
+    print(params);
     http.Response response =
         await ApiClient().postData(url: URL.loginURL, params: params);
-
+print(response.statusCode);
     if (response.statusCode == 200) {
       Map<String, dynamic> resposne = jsonDecode(response.body);
       Get.to(HomePage());
+      
 
       print("respomse gettinggggggggggggg");
-      print(resposne);
+      var token=resposne['access_token'];
+      return token;
     } else {
       if (response.statusCode == 500) {
-        SnackBarDialog.showSnackBar(
-          context,
-          "Invalid Username or Password, Please try again!",
-          isNormal: false,
-        );
+        // ignore: use_build_context_synchronously
+        Get.snackbar('Invalid Username or Password, Please try again!', "");
       } else {
-        SnackBarDialog.showSnackBar(
-            context, "Invalid Username or Password, Please try again!",
-            isNormal: false);
+        // ignore: use_build_context_synchronously
+       Get.snackbar('Invalid Username or Password, Please try again!', "");
       }
+      throw Exception('Failed to load API data');
     }
-    isLoading(false);
+    
   }
 }

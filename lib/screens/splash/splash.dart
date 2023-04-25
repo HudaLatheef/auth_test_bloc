@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
 
     Timer(
       const Duration(seconds: 3),
-      () => Get.to(() => MyHomePage()),
+      () => Get.to(() => const MyHomePage()),
     );
   }
 
@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("SPLASH SCREEN",
+                        const Text("SPLASH SCREENNNNN",
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold)),
                         Padding(

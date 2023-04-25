@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:auth_test_bloc/core/color.dart';
+import 'package:auth_test_bloc/util/color.dart';
 import 'package:auth_test_bloc/screens/home/homepage_ui.dart';
 import 'package:auth_test_bloc/screens/login/ui/login_ui.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
 
     Timer(
       const Duration(seconds: 3),
-      () => Get.to(() => const MyHomePage()),
+      () => Get.to(() => const LoginPage()),
     );
   }
 
@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("SPLASH SCREENNNNN",
+                        const Text("SPLASH SCREEN",
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold)),
                         Padding(

@@ -5,5 +5,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class IProfileRepo{
 
-  Future<Either<MainFailure,List<User>>> getProfileData();
+  Future<Either<MainFailure,Profile>> getProfileData();
 }

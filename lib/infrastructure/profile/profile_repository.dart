@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: IProfileRepo)
 class ProfileRepository implements IProfileRepo {
   @override
-  Future<Either<MainFailure, List<User>>> getProfileData() async {
+  Future<Either<MainFailure,Profile>> getProfileData() async {
     String? token = await AuthService().getToken();
     try {
       final Response response = await Dio(BaseOptions(headers: {
@@ -19,17 +19,18 @@ class ProfileRepository implements IProfileRepo {
         'Authorization': 'Bearer $token'
       })).get(URL.profile);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final profiledata = (response.data['profile'] as List).map((e) {
-          return User.fromJson(e);
-        }).toList();
-
-        print(response.data.toString());
-        for (final raw in response.data) {
-          print("vanhu mone");
-          profiledata.add(User.fromJson(raw as Map<String, dynamic>));
+        var data = response.data;
+        String  status = data['status'];
+        if (status == "success") {
+          var data1=data['profile'];
+          Profile profiledata = Profile.fromJson(data1);
+          print(profiledata);
+         
+          return Right(profiledata);
+          
+        }else{
+          return const Left(MainFailure.serverFailure());
         }
-        print(profiledata);
-        return Right(profiledata);
       } else {
         return const Left(MainFailure.serverFailure());
       }

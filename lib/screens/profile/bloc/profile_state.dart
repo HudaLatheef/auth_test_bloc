@@ -5,12 +5,12 @@ class ProfileState with _$ProfileState {
   const factory ProfileState({
 
     required bool? isLoading,
-     List<User>? profiledata,
-     required Option<Either<MainFailure,List<User>>> profileDataFilureOrSuccessOption,
+     Profile? profiledata,
+     required Option<Either<MainFailure,Profile>> profileDataFilureOrSuccessOption,
     
   }) = _ProfileState;
 
   factory ProfileState.initial(){
-    return const ProfileState(isLoading: false,profileDataFilureOrSuccessOption: None());
+    return const ProfileState(isLoading: false,profileDataFilureOrSuccessOption: None() );
   }
 }

@@ -167,10 +167,9 @@ abstract class _GetProfileData implements ProfileEvent {
 /// @nodoc
 mixin _$ProfileState {
   bool? get isLoading => throw _privateConstructorUsedError;
-  List<User>? get profiledata => throw _privateConstructorUsedError;
-  Option<Either<MainFailure, List<User>>>
-      get profileDataFilureOrSuccessOption =>
-          throw _privateConstructorUsedError;
+  Profile? get profiledata => throw _privateConstructorUsedError;
+  Option<Either<MainFailure, Profile>> get profileDataFilureOrSuccessOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -185,9 +184,10 @@ abstract class $ProfileStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool? isLoading,
-      List<User>? profiledata,
-      Option<Either<MainFailure, List<User>>>
-          profileDataFilureOrSuccessOption});
+      Profile? profiledata,
+      Option<Either<MainFailure, Profile>> profileDataFilureOrSuccessOption});
+
+  $ProfileCopyWith<$Res>? get profiledata;
 }
 
 /// @nodoc
@@ -215,12 +215,24 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
       profiledata: freezed == profiledata
           ? _value.profiledata
           : profiledata // ignore: cast_nullable_to_non_nullable
-              as List<User>?,
+              as Profile?,
       profileDataFilureOrSuccessOption: null == profileDataFilureOrSuccessOption
           ? _value.profileDataFilureOrSuccessOption
           : profileDataFilureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, List<User>>>,
+              as Option<Either<MainFailure, Profile>>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileCopyWith<$Res>? get profiledata {
+    if (_value.profiledata == null) {
+      return null;
+    }
+
+    return $ProfileCopyWith<$Res>(_value.profiledata!, (value) {
+      return _then(_value.copyWith(profiledata: value) as $Val);
+    });
   }
 }
 
@@ -234,9 +246,11 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool? isLoading,
-      List<User>? profiledata,
-      Option<Either<MainFailure, List<User>>>
-          profileDataFilureOrSuccessOption});
+      Profile? profiledata,
+      Option<Either<MainFailure, Profile>> profileDataFilureOrSuccessOption});
+
+  @override
+  $ProfileCopyWith<$Res>? get profiledata;
 }
 
 /// @nodoc
@@ -260,13 +274,13 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool?,
       profiledata: freezed == profiledata
-          ? _value._profiledata
+          ? _value.profiledata
           : profiledata // ignore: cast_nullable_to_non_nullable
-              as List<User>?,
+              as Profile?,
       profileDataFilureOrSuccessOption: null == profileDataFilureOrSuccessOption
           ? _value.profileDataFilureOrSuccessOption
           : profileDataFilureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, List<User>>>,
+              as Option<Either<MainFailure, Profile>>,
     ));
   }
 }
@@ -276,25 +290,15 @@ class __$$_ProfileStateCopyWithImpl<$Res>
 class _$_ProfileState implements _ProfileState {
   const _$_ProfileState(
       {required this.isLoading,
-      final List<User>? profiledata,
-      required this.profileDataFilureOrSuccessOption})
-      : _profiledata = profiledata;
+      this.profiledata,
+      required this.profileDataFilureOrSuccessOption});
 
   @override
   final bool? isLoading;
-  final List<User>? _profiledata;
   @override
-  List<User>? get profiledata {
-    final value = _profiledata;
-    if (value == null) return null;
-    if (_profiledata is EqualUnmodifiableListView) return _profiledata;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final Profile? profiledata;
   @override
-  final Option<Either<MainFailure, List<User>>>
-      profileDataFilureOrSuccessOption;
+  final Option<Either<MainFailure, Profile>> profileDataFilureOrSuccessOption;
 
   @override
   String toString() {
@@ -308,8 +312,8 @@ class _$_ProfileState implements _ProfileState {
             other is _$_ProfileState &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality()
-                .equals(other._profiledata, _profiledata) &&
+            (identical(other.profiledata, profiledata) ||
+                other.profiledata == profiledata) &&
             (identical(other.profileDataFilureOrSuccessOption,
                     profileDataFilureOrSuccessOption) ||
                 other.profileDataFilureOrSuccessOption ==
@@ -318,10 +322,7 @@ class _$_ProfileState implements _ProfileState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      const DeepCollectionEquality().hash(_profiledata),
-      profileDataFilureOrSuccessOption);
+      runtimeType, isLoading, profiledata, profileDataFilureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -333,16 +334,16 @@ class _$_ProfileState implements _ProfileState {
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {required final bool? isLoading,
-      final List<User>? profiledata,
-      required final Option<Either<MainFailure, List<User>>>
+      final Profile? profiledata,
+      required final Option<Either<MainFailure, Profile>>
           profileDataFilureOrSuccessOption}) = _$_ProfileState;
 
   @override
   bool? get isLoading;
   @override
-  List<User>? get profiledata;
+  Profile? get profiledata;
   @override
-  Option<Either<MainFailure, List<User>>> get profileDataFilureOrSuccessOption;
+  Option<Either<MainFailure, Profile>> get profileDataFilureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

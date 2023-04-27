@@ -21,9 +21,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<_GetProfileData>((event, emit) async {
       emit(state.copyWith(
           isLoading: true, profileDataFilureOrSuccessOption: none()));
-      final Either<MainFailure, List<User>> ProfileOption =
+      final Either<MainFailure, Profile> ProfileOption =
           await profileRepo.getProfileData();
-          print(ProfileOption.toString());
       emit(ProfileOption.fold(
           (failure) => state.copyWith(
               isLoading: false,

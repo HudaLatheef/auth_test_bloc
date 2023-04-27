@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 
+import 'package:auth_test_bloc/data/api/api_client.dart';
 import 'package:auth_test_bloc/data/api/url.dart';
-import 'package:auth_test_bloc/data/api_client.dart';
+
 import 'package:auth_test_bloc/screens/home/homepage_ui.dart';
+import 'package:auth_test_bloc/screens/mainscreen/mainscreen.dart';
 import 'package:auth_test_bloc/services/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -22,9 +24,10 @@ class LoginController extends GetxController {
     print(response.statusCode);
     if (response.statusCode == 200) {
       Map<String, dynamic> resposne = jsonDecode(response.body);
-      Get.to(HomePage());
+      Get.to(MainPage());
       var token = resposne['access_token'];
       await AuthService().setToken(token);
+      
       return token;
     } else {
       if (response.statusCode == 500) {

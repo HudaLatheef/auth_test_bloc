@@ -1,4 +1,4 @@
-import 'package:auth_test_bloc/core/color.dart';
+import 'package:auth_test_bloc/util/color.dart';
 import 'package:flutter/material.dart';
 
 

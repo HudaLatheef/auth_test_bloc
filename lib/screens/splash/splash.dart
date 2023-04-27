@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:auth_test_bloc/helper/get_all.dart';
+import 'package:auth_test_bloc/screens/mainscreen/mainscreen.dart';
 import 'package:auth_test_bloc/util/color.dart';
 import 'package:auth_test_bloc/screens/home/homepage_ui.dart';
 import 'package:auth_test_bloc/screens/login/ui/login_ui.dart';
@@ -23,11 +25,15 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    checkData();
+    checkData() ;
+
+    
   }
 
   checkData() async {
     isLoading.value = true;
+    await getAllInit();
+
 
     Timer(
       const Duration(seconds: 3),

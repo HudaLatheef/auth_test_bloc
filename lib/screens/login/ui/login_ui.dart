@@ -1,25 +1,22 @@
 import 'package:auth_test_bloc/controller/login_controller.dart';
-import 'package:auth_test_bloc/core/color.dart';
-import 'package:auth_test_bloc/core/dimensions.dart';
-import 'package:auth_test_bloc/core/snack_dialogs.dart';
+import 'package:auth_test_bloc/util/color.dart';
+import 'package:auth_test_bloc/util/snack_dialogs.dart';
 import 'package:auth_test_bloc/screens/login/login_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class LoginPage extends StatefulWidget {
+  static const routeName = '/login-page';
+  const LoginPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
     LoginController loginController = Get.find();
   // late Box box1;
   var userNameController = TextEditingController();
@@ -28,18 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _obscureText = true;
   bool isLoading = false;
 
-  // void getdata() async {
-  //   if (box1.get('username') != null) {
-  //     userNameController.text = box1.get('username');
-  //     isRememberMe = true;
-  //     setState(() {});
-  //   }
-  //   if (box1.get('password') != null) {
-  //     pwController.text = box1.get('password');
-  //     isRememberMe = true;
-  //     setState(() {});
-  //   }
-  // }
+  
   String? checkFieldEmpty(String? fieldContent) {
     //<-- add String? as a return type
     if (fieldContent!.isEmpty) {
@@ -49,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   checkValidation() async {
-    LoginController loginController = Get.find();
+  
 
     if (userNameController.text.isEmpty && pwController.text.isEmpty) {
       SnackBarDialog.showSnackBar(context, "Username and Password required",
@@ -61,15 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
       SnackBarDialog.showSnackBar(context, "Password is required",
           isNormal: false);
     } else {
-      // if (isRememberMe) {
-      //   box1.put('username', userNameController.text);
-      //   box1.put('password', pwController.text);
-      // }
-      // await LocationService.currentLocation.toString();
-      // await LocationService().getCurrentPosition();
-      print("eedethi");
+      
+      
+
       BlocProvider.of<LoginBloc>(context).add(
-        loginButtonPressed(username:userNameController.text, password: pwController.text
+        LoginButtonPressed(username:userNameController.text, password: pwController.text
           
         ),
       );
@@ -77,16 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  // void getPassword(String value) {
-  //   var saveUsername = box1.get('username');
-  //   if (saveUsername != null) {
-  //     if (saveUsername == value) {
-  //       getdata();
-  //     } else {
-  //       pwController.clear();
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: const EdgeInsets.only(top: 80),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
+                    children: const [
+                       Text(
                         "Hey there,",
                         style: TextStyle(
                           fontSize: 20,
@@ -113,10 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         "Welcome back,",
                         style: TextStyle(

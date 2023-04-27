@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:auth_test_bloc/core/error_response.dart';
-import 'package:auth_test_bloc/data/url.dart';
+import 'package:auth_test_bloc/data/api/url.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/utils.dart';

@@ -11,6 +11,10 @@ class ProfileState with _$ProfileState {
   }) = _ProfileState;
 
   factory ProfileState.initial(){
-    return const ProfileState(isLoading: false,profileDataFilureOrSuccessOption: None() );
+    return  ProfileState(isLoading: false,profileDataFilureOrSuccessOption: None(),profiledata: Profile(firstName: 'Not available',title: 'Not available',initials: 'Not available',surname: 'Not available',email: "",emailVerification: 'Not available',nic: '',kyc: 0) );
   }
 }
+
+
+
+

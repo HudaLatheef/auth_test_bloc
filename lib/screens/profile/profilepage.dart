@@ -1,4 +1,3 @@
-import 'package:auth_test_bloc/core/styles/k_color.dart';
 import 'package:auth_test_bloc/core/styles/k_padding_edge.dart';
 import 'package:auth_test_bloc/core/styles/k_sizedbox.dart';
 import 'package:auth_test_bloc/core/styles/k_stack_container.dart';
@@ -6,19 +5,28 @@ import 'package:auth_test_bloc/screens/profile/bloc/profile_bloc.dart';
 import 'package:auth_test_bloc/screens/profile/widgets/field_value.dart';
 import 'package:auth_test_bloc/util/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+
+
 class ProfilePage extends StatelessWidget {
+  static const routeName = '/profile-page';
   ProfilePage({super.key});
   String email = 'Not available';
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<ProfileBloc>(context).add(ProfileEvent.getProfileData());
+    });
     // load();
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: ConstantColor.primaryColor,
           title: Text(
             'Profile',
             style: TextStyle(fontSize: 14.sp),
@@ -26,76 +34,61 @@ class ProfilePage extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () async {
-                  // context.go(context.namedLocation('signin'));
+                  context.go(context.namedLocation('signin'));
                   // await AuthService().signOut();
                 },
                 icon: Icon(
                   Icons.logout,
-                  color: ConstantColor.secondaryColor,
+                  color: Colors.white,
                 ))
           ],
-          backgroundColor: ConstantColor.primaryColor,
         ),
-        body: gradientStackContainer(
-          context: context,
-          child: Container(
-            margin: kEdgeH10,
-            child: BlocBuilder<ProfileBloc, ProfileState>(
-              builder: (context, state) {
-                return
-                state.isLoading!?
-                const Center(child: CircularProgressIndicator()):
-                 ListView(
+        body:  BlocBuilder<ProfileBloc, ProfileState>(
+          builder: (context, state) {
+            return  Container(
+                margin: kEdgeH10,
+                child: ListView(
                   physics: const ClampingScrollPhysics(),
                   children: [
                     kHSizedBox20,
                     CircleAvatar(
                       radius: 52,
-                      backgroundColor: getPrimaryColor(context),
+                      backgroundColor: ConstantColor.primaryColor,
                       child: const CircleAvatar(
                         radius: 50,
                         backgroundImage:
-                            AssetImage('assets/images/default_img.jpg'),
+                            AssetImage('assets/images/man.jpeg'),
                       ),
                     ),
                     kHSizedBox20,
                     fieldValueWidget(
                       context: context,
                       field: 'Name',
-                      value: "Huda",
+                      value: "${state.profiledata!.title!} ${state.profiledata!.firstName!} ${state.profiledata!.initials!}",
                     ),
                     fieldValueWidget(
                       context: context,
-                      field: 'Email',
-                      value: 'huda@gmail.com',
+                      field: 'Email ',
+                      value: state.profiledata!.email!,
                     ),
                     fieldValueWidget(
                       context: context,
-                      field: 'Phone',
-                      value: '+971 562834212',
+                      field: 'NIC    ',
+                      value: state.profiledata!.nic!,
                     ),
-                    const Divider(),
-                    containerFieldNav(
+                    fieldValueWidget(
                       context: context,
-                      icon: Icons.list_alt,
-                      title: 'Booking History',
+                      field: 'KYC    ',
+                      value: state.profiledata!.kyc!.toString(),
                     ),
-                    containerFieldNav(
-                      context: context,
-                      icon: Icons.computer,
-                      title: 'About Us',
-                    ),
-                    containerFieldNav(
-                      context: context,
-                      icon: Icons.contact_mail,
-                      title: 'Contact us',
-                    ),
+                    
+                    
                     kHSizedBox20,
                   ],
-                );
-              },
-            ),
-          ),
+                ),
+              
+            );
+          },
         ));
   }
 }
@@ -111,7 +104,7 @@ Widget containerFieldNav(
       height: 50,
       decoration: BoxDecoration(
         color: Theme.of(context).highlightColor,
-        border: Border.all(color: getPrimaryColor(context), width: 0.1),
+        border: Border.all(color: ConstantColor.primaryColor, width: 0.1),
         borderRadius: BorderRadius.circular(7.r),
       ),
       child: Row(
@@ -119,12 +112,12 @@ Widget containerFieldNav(
         children: <Widget>[
           Icon(
             icon,
-            color: getPrimaryColor(context),
+            color: ConstantColor.primaryColor,
           ),
           Text(title),
           Icon(
             Icons.chevron_right,
-            color: getPrimaryColor(context),
+            color: ConstantColor.primaryColor,
           )
         ],
       ));

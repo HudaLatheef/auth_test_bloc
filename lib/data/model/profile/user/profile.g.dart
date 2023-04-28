@@ -12,9 +12,7 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       firstName: json['FIRST_NAME'] as String?,
       surname: json['SURNAME'] as String?,
       email: json['email'] as String?,
-      emailVerification: json['email_verification'] == null
-          ? null
-          : DateTime.parse(json['email_verification'] as String),
+      emailVerification: json['email_verification'] as String?,
       nic: json['nic'] as String?,
       kyc: json['kyc'] as int?,
     );
@@ -26,7 +24,7 @@ Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
       'FIRST_NAME': instance.firstName,
       'SURNAME': instance.surname,
       'email': instance.email,
-      'email_verification': instance.emailVerification?.toIso8601String(),
+      'email_verification': instance.emailVerification,
       'nic': instance.nic,
       'kyc': instance.kyc,
     };

@@ -13,19 +13,24 @@ class ProfileRepository implements IProfileRepo {
   @override
   Future<Either<MainFailure,Profile>> getProfileData() async {
     String? token = await AuthService().getToken();
+    print(token);
+    print("vaa vaa vooo");
     try {
       final Response response = await Dio(BaseOptions(headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token'
       })).get(URL.profile);
+      print(response.statusCode);
       if (response.statusCode == 200 || response.statusCode == 201) {
         var data = response.data;
         String  status = data['status'];
+        print(status);
+        print("vaa vaa veee");
         if (status == "success") {
           var data1=data['profile'];
           Profile profiledata = Profile.fromJson(data1);
           print(profiledata);
-         
+         print("vaa vaa vyyy");
           return Right(profiledata);
           
         }else{

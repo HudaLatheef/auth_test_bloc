@@ -30,7 +30,7 @@ mixin _$Profile {
   String? get surname => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'email_verification')
-  DateTime? get emailVerification => throw _privateConstructorUsedError;
+  String? get emailVerification => throw _privateConstructorUsedError;
   String? get nic => throw _privateConstructorUsedError;
   int? get kyc => throw _privateConstructorUsedError;
 
@@ -50,7 +50,7 @@ abstract class $ProfileCopyWith<$Res> {
       @JsonKey(name: 'FIRST_NAME') String? firstName,
       @JsonKey(name: 'SURNAME') String? surname,
       String? email,
-      @JsonKey(name: 'email_verification') DateTime? emailVerification,
+      @JsonKey(name: 'email_verification') String? emailVerification,
       String? nic,
       int? kyc});
 }
@@ -101,7 +101,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       emailVerification: freezed == emailVerification
           ? _value.emailVerification
           : emailVerification // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       nic: freezed == nic
           ? _value.nic
           : nic // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       @JsonKey(name: 'FIRST_NAME') String? firstName,
       @JsonKey(name: 'SURNAME') String? surname,
       String? email,
-      @JsonKey(name: 'email_verification') DateTime? emailVerification,
+      @JsonKey(name: 'email_verification') String? emailVerification,
       String? nic,
       int? kyc});
 }
@@ -175,7 +175,7 @@ class __$$_ProfileCopyWithImpl<$Res>
       emailVerification: freezed == emailVerification
           ? _value.emailVerification
           : emailVerification // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       nic: freezed == nic
           ? _value.nic
           : nic // ignore: cast_nullable_to_non_nullable
@@ -220,7 +220,7 @@ class _$_Profile implements _Profile {
   final String? email;
   @override
   @JsonKey(name: 'email_verification')
-  final DateTime? emailVerification;
+  final String? emailVerification;
   @override
   final String? nic;
   @override
@@ -275,7 +275,7 @@ abstract class _Profile implements Profile {
       @JsonKey(name: 'FIRST_NAME') final String? firstName,
       @JsonKey(name: 'SURNAME') final String? surname,
       final String? email,
-      @JsonKey(name: 'email_verification') final DateTime? emailVerification,
+      @JsonKey(name: 'email_verification') final String? emailVerification,
       final String? nic,
       final int? kyc}) = _$_Profile;
 
@@ -297,7 +297,7 @@ abstract class _Profile implements Profile {
   String? get email;
   @override
   @JsonKey(name: 'email_verification')
-  DateTime? get emailVerification;
+  String? get emailVerification;
   @override
   String? get nic;
   @override

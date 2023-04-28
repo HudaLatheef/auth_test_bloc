@@ -1,5 +1,6 @@
 import 'package:auth_test_bloc/screens/home/homepage_ui.dart';
 import 'package:auth_test_bloc/screens/login/ui/login_ui.dart';
+import 'package:auth_test_bloc/screens/profile/profilepage.dart';
 import 'package:auth_test_bloc/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +26,12 @@ final router = GoRouter(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) =>
           const HomePage(),
+    ),
+    GoRoute(
+      name: 'profile',
+      path: '/profile',
+      builder: (BuildContext context, GoRouterState state) =>
+           ProfilePage(),
     ),
   ],
 );

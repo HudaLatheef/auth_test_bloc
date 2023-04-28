@@ -11,7 +11,7 @@ class Profile with _$Profile {
 		@JsonKey(name: 'FIRST_NAME') String? firstName,
 		@JsonKey(name: 'SURNAME') String? surname,
 		String? email,
-		@JsonKey(name: 'email_verification') DateTime? emailVerification,
+		@JsonKey(name: 'email_verification') String? emailVerification,
 		String? nic,
 		int? kyc,
 	}) = _Profile;

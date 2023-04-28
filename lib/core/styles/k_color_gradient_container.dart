@@ -9,9 +9,7 @@ Widget backgroundGradientContainer(BuildContext context) {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-          Theme.of(context).cardColor,
-          Theme.of(context).focusColor,
-          Theme.of(context).canvasColor,
+          
         ])),
   );
 }

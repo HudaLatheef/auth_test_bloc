@@ -5,5 +5,8 @@ class URL {
 
   static String loginURL = "$baseURL/api/login";
   static String  profile = "$baseURL/api/profile";
+  static String  refreshToken = "$baseURL/api/refresh";
+  static String  signuprequest = "$baseURL/api/register/request";
+  static String  registration = "$baseURL/api/register";
   
 }

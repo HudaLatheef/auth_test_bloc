@@ -16,12 +16,12 @@ import 'package:go_router/go_router.dart';
 class ProfilePage extends StatelessWidget {
   static const routeName = '/profile-page';
   ProfilePage({super.key});
-  String email = 'Not available';
+  
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      BlocProvider.of<ProfileBloc>(context).add(ProfileEvent.getProfileData());
+      BlocProvider.of<ProfileBloc>(context).add(const ProfileEvent.getProfileData());
     });
     // load();
     return Scaffold(
@@ -45,6 +45,11 @@ class ProfilePage extends StatelessWidget {
         ),
         body:  BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
+            if(state.isLoading==true){
+              return Center(child: CircularProgressIndicator());
+
+            }
+            else{
             return  Container(
                 margin: kEdgeH10,
                 child: ListView(
@@ -87,7 +92,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               
-            );
+            );}
           },
         ));
   }

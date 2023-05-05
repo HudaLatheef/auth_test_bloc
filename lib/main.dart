@@ -1,11 +1,11 @@
-import 'package:auth_test_bloc/controller/login_controller.dart';
 import 'package:auth_test_bloc/core/di/injectable.dart';
 import 'package:auth_test_bloc/data/model/i_profile_repo.dart';
 import 'package:auth_test_bloc/helper/app_routes.dart';
+import 'package:auth_test_bloc/screens/login/bloc/login_bloc.dart';
 import 'package:auth_test_bloc/screens/profile/bloc/profile_bloc.dart';
+import 'package:auth_test_bloc/screens/signup/bloc/signup_bloc.dart';
 import 'package:auth_test_bloc/util/color.dart';
 import 'package:auth_test_bloc/helper/main_binding.dart';
-import 'package:auth_test_bloc/screens/login/login_bloc.dart';
 import 'package:auth_test_bloc/screens/login/ui/login_ui.dart';
 import 'package:auth_test_bloc/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +18,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
  
   await configureInjection();
-   final loginController = LoginController();
+   
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider<LoginBloc>(
-        create: (context) {
-          return LoginBloc(loginController: loginController);
-        },
-      ),
-      BlocProvider(create: (context) => getIt<ProfileBloc>(),)
+      BlocProvider(create: (context) => getIt<LoginBloc>(),),
+      BlocProvider(create: (context) => getIt<ProfileBloc>(),),
+      BlocProvider(create: (context) => getIt<SignupBloc>(),)
     ],
     child: const MyApp(),
   ));

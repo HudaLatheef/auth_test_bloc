@@ -10,7 +10,6 @@ Widget gradientStackContainer({
 }) {
   return Stack(
     children: <Widget>[
-
       Positioned.fill(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: .0, sigmaY: 2.0),
